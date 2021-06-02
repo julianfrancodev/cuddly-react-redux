@@ -1,6 +1,33 @@
 import React from 'react';
 
+import { useDispatch, useSelector } from "react-redux";
+
+// Actions form redux
+
+import { createProductAction } from '../actions/ProductsActions';
+
 const ProductsNew = () => {
+
+    const dispatch = useDispatch();
+
+    // usar useDispatch para ejecutar el action
+    const addProduct = () => dispatch(createProductAction());
+
+
+    // submit from
+
+    const submitNewProduct = (e) => {
+        e.preventDefault();
+
+        // Validar formulario
+
+        // Create new product
+
+        addProduct();
+
+
+    }
+
     return (
         <div className='row justify-content-center mt-3'>
             <div className="col-md-8">
@@ -10,7 +37,9 @@ const ProductsNew = () => {
                             Agregar nuevo producto
                         </h2>
 
-                        <form>
+                        <form
+                            onSubmit={submitNewProduct}
+                        >
                             <div className="form-group">
                                 <label>Nombre Producto</label>
                                 <input
@@ -31,7 +60,7 @@ const ProductsNew = () => {
                             </div>
 
                             <button type="submit" className="btn btn-block btn-primary font-weight-bold text-uppercase">
-                                    Agregar
+                                Agregar
                             </button>
 
                         </form>

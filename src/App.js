@@ -7,20 +7,33 @@ import ProductEdit from './components/ProductEdit';
 import Products from './components/Products';
 import ProductsNew from './components/ProductsNew';
 
+// Redux
+
+import { Provider } from "react-redux";
+import store from './store';
+
+
+
 function App() {
   return (
 
     <Router>
-      <Header />
-      <div className="container">
+      <Provider
+        store={store}
+      >
 
 
-        <Switch>
-          <Route exact path='/' component={Products} />
-          <Route exact path='/products/new' component={ProductsNew}/>
-          <Route exact path='/products/edit/:id' component={ProductEdit}/>
-        </Switch>
-      </div>
+        <Header />
+        <div className="container">
+
+
+          <Switch>
+            <Route exact path='/' component={Products} />
+            <Route exact path='/products/new' component={ProductsNew} />
+            <Route exact path='/products/edit/:id' component={ProductEdit} />
+          </Switch>
+        </div>
+      </Provider>
     </Router>
 
   );
