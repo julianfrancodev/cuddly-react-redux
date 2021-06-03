@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,6 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { createProductAction } from '../actions/ProductsActions';
 
 const ProductsNew = () => {
+
+    // State del componente
+
+    const [nombre, setNombre] = useState("");
+    const [precio, setPrecio] = useState(0);
+
 
     const dispatch = useDispatch();
 
@@ -47,6 +53,8 @@ const ProductsNew = () => {
                                     className="form-control"
                                     placeholder="Nombre producto"
                                     name="nombre"
+                                    value={nombre}
+                                    onChange={e => setNombre(e.target.value)}
                                 />
                             </div>
                             <div className="form-group">
@@ -56,6 +64,8 @@ const ProductsNew = () => {
                                     className="form-control"
                                     placeholder="Precio producto"
                                     name="precio"
+                                    value={precio}
+                                    onChange={e => setPrecio(e.target.value)}
                                 />
                             </div>
 
