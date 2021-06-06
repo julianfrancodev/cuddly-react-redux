@@ -17,7 +17,7 @@ const ProductsNew = () => {
     const dispatch = useDispatch();
 
     // usar useDispatch para ejecutar el action
-    const addProduct = () => dispatch(createProductAction());
+    const addProduct = (product) => dispatch(createProductAction(product));
 
 
     // submit from
@@ -27,9 +27,16 @@ const ProductsNew = () => {
 
         // Validar formulario
 
+        if(nombre.trim() === '' || precio.trim() <= 0){
+            return;
+        }
+
         // Create new product
 
-        addProduct();
+        addProduct({
+            nombre, 
+            precio
+        });
 
 
     }
@@ -65,7 +72,7 @@ const ProductsNew = () => {
                                     placeholder="Precio producto"
                                     name="precio"
                                     value={precio}
-                                    onChange={e => setPrecio(e.target.value)}
+                                    onChange={e => setPrecio(Number(e.target.value))}
                                 />
                             </div>
 
