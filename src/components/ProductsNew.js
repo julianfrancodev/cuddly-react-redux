@@ -27,7 +27,7 @@ const ProductsNew = () => {
 
         // Validar formulario
 
-        if(nombre.trim() === '' || precio.trim() <= 0){
+        if(nombre.trim() === '' || precio <= 0){
             return;
         }
 
