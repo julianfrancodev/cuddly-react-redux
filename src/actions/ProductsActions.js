@@ -1,14 +1,22 @@
 import { ADD_PRODUCT, ADD_PRODUCT_ERROR, ADD_PRODUCT_SUCCESS } from "../types";
+import clientAxios from '../config/axios';
 
 // Crear nuevos productos
 
 export function createProductAction(product) {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(addProduct());
 
         try {
+            // insertar en la API
+
+           await clientAxios.post('/productos', product);
+
+            // Si todo esta bien actualizar el state
+
             dispatch(addProductSuccess(product));
         } catch (e) {
+            console.log(e);
             dispatch(addProductError(true));
         }
 
